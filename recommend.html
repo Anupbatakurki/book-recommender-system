@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+     .text-white{
+        color: #fff;
+    }
+    .text-yellow{
+        color:#8B8000;
+    }
+    .text-black{
+        color:#000;
+     }
+ </style>
+<body style="background-color:#1a1c23">
+
+    <nav class="navbar" style="background-color:#00a65a; height: 6rem; padding: 0.5rem;">
+        <a class="navbar-brand text-black" style="background-color:#00a65a; font-size: 22px;" >Book Recommender System </a>
+        <ul class="nav navbar-nav">
+            <li><a class="text-white" style="border-radius: 5px; font-size: 15px;" href="/">Home</a></li>
+            <li><a class="text-white" style="border-radius: 5px; font-size: 15px;" href="/recommend">Recommend</a></li>
+            <li><a class="text-white" style="border-radius: 5px; font-size: 15px;" href="/contact">Contact us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-white" style="font-size:50px">Book Recommender</h1>
+                <h5 class="text-yellow">NOTE : Please enter the book name correctly as declared by the publisher</h5>
+                 <br><br>
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" placeholder="Enter book title here " type="text" class="form-control"><br>
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
+            </div>
+
+            {% if data %}
+
+             {% for i in data %}
+                <div class="col-md-3" style="margin-top:50px">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{i[2]}}">
+                            <p style="padding-top: 4px; color:#4CAF50;">{{i[0]}}</p>
+                            <h5 class="text-white">{{i[1]}}</h5>
+                        </div>
+                    </div>
+                </div>
+             {% endfor %}
+            {% elif fun %}
+
+                <div class="col-md-3" style="margin-top:50px">
+                    <div class="card">
+                        <div class="card-body" style="width: 75rem;">
+                            <h3 style="color: #d92121;">Sorry For the inconvenience,Entered Book is not available or please enter a valid book title</h3>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+
+
+
+
+        </div>
+    </div>
+
+</body>
+</html>
